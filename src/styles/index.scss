@@ -13,4 +13,9 @@
 // Components
 @import './components/App';
 @import './components/Shell';
-@import './components/Nav';
+
+// Animated components
+@import './components/animated/FadeIn';
+
+// Structural components
+@import './components/structural/Nav';
