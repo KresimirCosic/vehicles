@@ -71,6 +71,10 @@ export class VehiclesStore {
     makeObservable(this, {
       makes: observable,
       models: observable,
+      addMake: action,
+      removeMake: action,
+      addModel: action,
+      removeModel: action,
     });
     this.rootStore = rootStore;
   }
