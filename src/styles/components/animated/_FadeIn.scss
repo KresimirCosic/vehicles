@@ -1,5 +1,6 @@
 .FadeIn {
-  transition: all $fadeInDuration ease-out;
+  transition: opacity $duration-animation ease-out,
+    transform $duration-animation ease-out;
   opacity: 0;
   transform: translateY(-20%);
   &-enter {

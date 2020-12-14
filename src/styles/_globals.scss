@@ -1,0 +1,30 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
+
+html {
+  font-family: $font-primary;
+  color: $color-primary;
+  overflow-x: hidden;
+  @media screen and (min-width: $breakpoint-xs) {
+    font-size: $font-size-xs;
+  }
+  @media screen and (min-width: $breakpoint-s) {
+    font-size: $font-size-s;
+  }
+  @media screen and (min-width: $breakpoint-md) {
+    font-size: $font-size-md;
+  }
+  @media screen and (min-width: $breakpoint-lg) {
+    font-size: $font-size-lg;
+  }
+  @media screen and (min-width: $breakpoint-xl) {
+    font-size: $font-size-xl;
+  }
+}
+
+.relative {
+  position: relative;
+}
+
+.absolute {
+  position: absolute;
+}

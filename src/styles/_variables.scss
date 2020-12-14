@@ -1,2 +1,29 @@
+// Colors
+$color-black: #000;
+$color-white: #fff;
+$color-primary: #264653;
+$color-secondary: #2a9d8f;
+$color-tertiary: #e9c46a;
+$color-quaternary: #f4a261;
+$color-quinary: #e76f51;
+
+// Font families
+$font-primary: 'Roboto', sans-serif;
+$font-secondary: 'Montserrat', sans-serif;
+
+// Font
+$font-size-xs: 12px;
+$font-size-s: 14px;
+$font-size-md: 16px;
+$font-size-lg: 20px;
+$font-size-xl: 24px;
+
+// Breakpoints
+$breakpoint-xs: 0px;
+$breakpoint-s: 321px;
+$breakpoint-md: 769px;
+$breakpoint-lg: 1201px;
+$breakpoint-xl: 1921px;
+
 // Durations
-$fadeInDuration: 350ms;
+$duration-animation: 350ms;
