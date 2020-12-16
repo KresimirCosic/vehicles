@@ -1,11 +1,11 @@
 .FadeIn {
-  transition: opacity $duration-animation ease-out,
-    transform $duration-animation ease-out;
+  transition: opacity $duration-animation-fade-in ease-out,
+    transform $duration-animation-fade-in ease-out;
   opacity: 0;
   transform: translateY(-20%);
   &-enter {
     &-active {
-      opacity: 0;
+      opacity: 1;
       transform: translateY(-20%);
     }
     &-done {
@@ -14,7 +14,6 @@
     }
   }
   &-exit {
-    opacity: 1;
     &-active {
       opacity: 0;
       transform: translateY(-20%);

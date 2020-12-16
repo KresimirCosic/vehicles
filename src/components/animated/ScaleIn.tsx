@@ -1,14 +1,14 @@
 import React, { useRef } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
-import { fadeInDuration } from '../../constants/durations';
+import { scaleInDuration } from '../../constants/durations';
 
-interface FadeInProps {
-  appearCondition?: boolean;
+interface ScaleInProps {
+  appearCondition?: any;
   appearDelayMultiplier?: number;
 }
 
-const FadeIn: React.FC<FadeInProps> = ({
+const ScaleIn: React.FC<ScaleInProps> = ({
   children,
   appearCondition,
   appearDelayMultiplier,
@@ -22,22 +22,22 @@ const FadeIn: React.FC<FadeInProps> = ({
       enter
       mountOnEnter
       unmountOnExit
-      classNames='FadeIn'
+      classNames='ScaleIn'
       timeout={{
         appear:
           typeof appearDelayMultiplier !== 'undefined'
-            ? fadeInDuration * appearDelayMultiplier
-            : fadeInDuration,
-        enter: fadeInDuration,
-        exit: fadeInDuration,
+            ? scaleInDuration * appearDelayMultiplier
+            : scaleInDuration,
+        enter: scaleInDuration,
+        exit: scaleInDuration,
       }}
       nodeRef={nodeRef}
     >
-      <div className='FadeIn' ref={nodeRef}>
+      <div className='ScaleIn' ref={nodeRef}>
         {children}
       </div>
     </CSSTransition>
   );
 };
 
-export default FadeIn;
+export default ScaleIn;

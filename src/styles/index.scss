@@ -16,7 +16,9 @@
 
 // Animated components
 @import './components/animated/FadeIn';
+@import './components/animated/ScaleIn';
 
 // Structural components
 @import './components/structural/Nav';
+@import './components/structural/LoaderAnimation';
 @import './components/structural/Loader';
