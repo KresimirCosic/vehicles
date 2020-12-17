@@ -1,0 +1,38 @@
+.Nav {
+  background-color: $color-quinary;
+  &-logo {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    &-link {
+      color: $color-primary;
+    }
+  }
+  &-container {
+    display: flex;
+    justify-content: space-between;
+  }
+  &-list {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: space-between;
+    &-item {
+      &-link {
+        display: block;
+        padding: 2rem;
+        text-align: center;
+        color: $color-primary;
+        &:hover {
+          color: $color-white;
+          background-color: $color-primary;
+        }
+        &.active {
+          background-color: $color-tertiary;
+          color: $color-primary;
+        }
+      }
+    }
+  }
+}

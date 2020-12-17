@@ -1,6 +1,7 @@
-import { action, makeObservable, observable } from 'mobx';
+import { action, makeObservable, observable, runInAction } from 'mobx';
 
 import { RootStore } from './rootStore';
+import { scaleInDuration } from '../../constants/durations';
 
 export class UserInterfaceStore {
   rootStore;
@@ -20,6 +21,10 @@ export class UserInterfaceStore {
   }
 
   turnLoaderOff() {
-    this.loader = false;
+    setTimeout(() => {
+      runInAction(() => {
+        this.loader = false;
+      });
+    }, scaleInDuration * 2);
   }
 }

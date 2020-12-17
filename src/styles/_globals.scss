@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&family=Roboto:ital,wght@0,400;0,500;0,700;1,400;1,500;1,700&display=swap');
 
+* {
+  box-sizing: border-box;
+}
+
 html {
   font-family: $font-primary;
   color: $color-primary;
@@ -21,6 +25,14 @@ html {
   }
 }
 
+a {
+  text-decoration: none;
+}
+
+ul {
+  list-style-type: none;
+}
+
 .relative {
   position: relative;
 }
@@ -31,4 +43,9 @@ html {
 
 .fixed {
   position: fixed;
+}
+
+.container {
+  max-width: $breakpoint-lg;
+  margin: 0 auto;
 }
