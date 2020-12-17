@@ -19,18 +19,29 @@
     display: flex;
     justify-content: space-between;
     &-item {
-      &-link {
+      &-link,
+      &-button {
+        cursor: pointer;
+        border: none;
+        outline: none;
         display: block;
         padding: 2rem;
         text-align: center;
         color: $color-primary;
-        &:hover {
+        &:hover,
+        &:focus {
           color: $color-white;
           background-color: $color-primary;
         }
+      }
+      &-link {
         &.active {
           background-color: $color-tertiary;
           color: $color-primary;
+          &:hover,
+          &:focus {
+            cursor: not-allowed;
+          }
         }
       }
     }

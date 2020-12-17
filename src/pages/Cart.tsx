@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Page from '../components/structural/Page';
+import Page from '../components/utility/Page';
 
 const Cart: React.FC = () => {
   return (
