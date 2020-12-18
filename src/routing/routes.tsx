@@ -3,6 +3,7 @@ import React from 'react';
 import Home from '../pages/Home';
 import Cart from '../pages/Cart';
 import Login from '../pages/Login';
+import Register from '../pages/Register';
 
 export interface PageRoute {
   name: string;
@@ -21,6 +22,14 @@ export const pageRoutes: PageRoute[] = [
     visibleInNav: true,
     privateRoute: true,
     requiresAnonymity: false,
+  },
+  {
+    name: 'Register',
+    path: '/register',
+    component: <Register />,
+    visibleInNav: true,
+    privateRoute: false,
+    requiresAnonymity: true,
   },
   {
     name: 'Login',

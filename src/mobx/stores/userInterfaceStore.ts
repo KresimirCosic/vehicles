@@ -25,6 +25,6 @@ export class UserInterfaceStore {
       runInAction(() => {
         this.loader = false;
       });
-    }, scaleInDuration * 2);
+    }, scaleInDuration * 10);
   }
 }

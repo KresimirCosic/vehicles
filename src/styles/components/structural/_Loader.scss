@@ -12,9 +12,10 @@
     transform $duration-animation-scale-in ease-out;
   opacity: 0;
   transform: scale(1.5);
+  z-index: 99;
   &-enter {
     &-active {
-      opacity: 0;
+      opacity: 1;
       transform: scale(1);
     }
     &-done {
