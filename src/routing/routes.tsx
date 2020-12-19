@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Cart from '../pages/Cart';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
+import Dashboard from '../pages/Dashboard';
 
 export interface PageRoute {
   name: string;
@@ -12,6 +13,7 @@ export interface PageRoute {
   visibleInNav: boolean;
   privateRoute: boolean;
   requiresAnonymity: boolean;
+  requiresAdminPrivileges: boolean;
 }
 
 export const pageRoutes: PageRoute[] = [
@@ -22,6 +24,7 @@ export const pageRoutes: PageRoute[] = [
     visibleInNav: true,
     privateRoute: true,
     requiresAnonymity: false,
+    requiresAdminPrivileges: false,
   },
   {
     name: 'Register',
@@ -30,6 +33,7 @@ export const pageRoutes: PageRoute[] = [
     visibleInNav: true,
     privateRoute: false,
     requiresAnonymity: true,
+    requiresAdminPrivileges: false,
   },
   {
     name: 'Login',
@@ -38,6 +42,16 @@ export const pageRoutes: PageRoute[] = [
     visibleInNav: true,
     privateRoute: false,
     requiresAnonymity: true,
+    requiresAdminPrivileges: false,
+  },
+  {
+    name: 'Dashboard',
+    path: '/dashboard',
+    component: <Dashboard />,
+    visibleInNav: true,
+    privateRoute: true,
+    requiresAnonymity: false,
+    requiresAdminPrivileges: true,
   },
   {
     name: 'Home',
@@ -46,5 +60,6 @@ export const pageRoutes: PageRoute[] = [
     visibleInNav: true,
     privateRoute: false,
     requiresAnonymity: false,
+    requiresAdminPrivileges: false,
   },
 ];

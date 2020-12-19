@@ -2,14 +2,14 @@ import React from 'react';
 
 import Page from '../components/structural/Page';
 
-const Home: React.FC = () => {
+const Dashboard: React.FC = () => {
   return (
     <Page>
-      <div className='Home'>
-        <h1>Home</h1>
+      <div className='Dashboard'>
+        <h1>Dashboard</h1>
       </div>
     </Page>
   );
 };
 
-export default Home;
+export default Dashboard;

@@ -12,11 +12,16 @@ const Nav: React.FC = () => {
 
   const determineRouteRendering = (
     privateRoute: boolean,
-    requiresAnonymity: boolean
+    requiresAnonymity: boolean,
+    requiresAdminPrivileges: boolean
   ) => {
     if (
-      (privateRoute && authenticationStore.userName) ||
-      (!privateRoute && requiresAnonymity && !authenticationStore.userName) ||
+      (privateRoute && authenticationStore.user && !requiresAdminPrivileges) ||
+      (privateRoute &&
+        requiresAdminPrivileges &&
+        authenticationStore.user &&
+        authenticationStore.user.admin) ||
+      (!privateRoute && requiresAnonymity && !authenticationStore.user) ||
       (!privateRoute && !requiresAnonymity)
     )
       return true;
@@ -41,10 +46,15 @@ const Nav: React.FC = () => {
                   visibleInNav,
                   privateRoute,
                   requiresAnonymity,
+                  requiresAdminPrivileges,
                 }) => {
                   if (
                     visibleInNav &&
-                    determineRouteRendering(privateRoute, requiresAnonymity)
+                    determineRouteRendering(
+                      privateRoute,
+                      requiresAnonymity,
+                      requiresAdminPrivileges
+                    )
                   )
                     return (
                       <li className='Nav-list-item' key={name}>
@@ -56,10 +66,10 @@ const Nav: React.FC = () => {
                   return null;
                 }
               )}
-              {authenticationStore.userName && (
+              {authenticationStore.user && (
                 <li
                   className='Nav-list-item'
-                  onClick={() => authenticationStore.removeUserName()}
+                  onClick={() => authenticationStore.removeUser()}
                 >
                   <button className='Nav-list-item-button'>Logout</button>
                 </li>

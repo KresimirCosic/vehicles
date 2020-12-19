@@ -11,8 +11,7 @@ interface PrivateRouteProps {
 const PrivateRoute: React.FC<PrivateRouteProps> = ({ children, path }) => {
   const { authenticationStore } = useRootStore();
 
-  if (authenticationStore.userName)
-    return <Route path={path}>{children}</Route>;
+  if (authenticationStore.user) return <Route path={path}>{children}</Route>;
   else return <Redirect to='/login' />;
 };
 

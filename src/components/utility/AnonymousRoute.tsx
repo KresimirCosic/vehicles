@@ -11,8 +11,7 @@ interface AnonymousRouteProps {
 const AnonymousRoute: React.FC<AnonymousRouteProps> = ({ children, path }) => {
   const { authenticationStore } = useRootStore();
 
-  if (!authenticationStore.userName)
-    return <Route path={path}>{children}</Route>;
+  if (!authenticationStore.user) return <Route path={path}>{children}</Route>;
   else return <Redirect to='/' />;
 };
 

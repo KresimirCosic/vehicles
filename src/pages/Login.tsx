@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useRootStore } from '../mobx/hooks/useRootStore';
 
-import Page from '../components/utility/Page';
+import Page from '../components/structural/Page';
 
 const Login: React.FC = () => {
   const { authenticationStore } = useRootStore();
@@ -13,7 +13,8 @@ const Login: React.FC = () => {
         <h1>Login</h1>
         <button
           onClick={() => {
-            authenticationStore.setUserName('Kresimir');
+            authenticationStore.setUser('admin', 'deus');
+            // authenticationStore.setUser('user', 'mortale');
           }}
         >
           Log in

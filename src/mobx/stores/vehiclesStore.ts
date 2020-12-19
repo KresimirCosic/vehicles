@@ -96,7 +96,7 @@ export class VehiclesStore {
       ...this.models.map((model) => model.ID)
     );
     if (!currentLargestModelID) currentLargestModelID = 0;
-    this.models.push({ ID: currentLargestModelID, name, makeID, abrv });
+    this.models.push({ ID: currentLargestModelID + 1, name, makeID, abrv });
   }
 
   removeModel(ID: number) {

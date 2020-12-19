@@ -1,6 +1,6 @@
 import React from 'react';
 
-import Page from '../components/utility/Page';
+import Page from '../components/structural/Page';
 
 const Register: React.FC = () => {
   return (

@@ -9,6 +9,7 @@ import AnonymousRoute from './utility/AnonymousRoute';
 
 import Nav from './structural/Nav';
 import Loader from './structural/Loader';
+import AdminPrivateRoute from './utility/AdminPrivateRoute';
 
 const Shell: React.FC = () => {
   const { userInterfaceStore } = useRootStore();
@@ -26,14 +27,28 @@ const Shell: React.FC = () => {
 
         <Switch>
           {pageRoutes.map(
-            ({ name, path, component, privateRoute, requiresAnonymity }) => {
-              if (privateRoute)
-                return (
-                  <PrivateRoute key={name} path={path}>
-                    {component}
-                  </PrivateRoute>
-                );
-              else if (requiresAnonymity)
+            ({
+              name,
+              path,
+              component,
+              privateRoute,
+              requiresAnonymity,
+              requiresAdminPrivileges,
+            }) => {
+              if (privateRoute) {
+                if (requiresAdminPrivileges)
+                  return (
+                    <AdminPrivateRoute key={name} path={path}>
+                      {component}
+                    </AdminPrivateRoute>
+                  );
+                else
+                  return (
+                    <PrivateRoute key={name} path={path}>
+                      {component}
+                    </PrivateRoute>
+                  );
+              } else if (requiresAnonymity)
                 return (
                   <AnonymousRoute key={name} path={path}>
                     {component}
