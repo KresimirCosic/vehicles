@@ -10,20 +10,51 @@ interface ModelsListProps {
 
 const ModelsList: React.FC<ModelsListProps> = ({ models }) => {
   const [currentPage, setCurrentPage] = useState(1);
+  const [filterBy, setFilterBy] = useState('');
   const itemsPerPage = 5;
 
   const generatePageNumbers = () => {
     const pageNumbers: number[] = [];
 
-    for (let i = 1; i <= Math.ceil(models.length / itemsPerPage); i++) {
+    for (
+      let i = 1;
+      i <=
+      Math.ceil(
+        models.filter(
+          (model) =>
+            model.name.toLowerCase().includes(filterBy.toLowerCase()) ||
+            model.abrv.toLowerCase().includes(filterBy.toLowerCase())
+        ).length / itemsPerPage
+      );
+      i++
+    ) {
       pageNumbers.push(i);
     }
 
     return pageNumbers;
   };
 
+  const generateModelsList = () => {
+    return models
+      .filter(
+        (model) =>
+          model.name.toLowerCase().includes(filterBy.toLowerCase()) ||
+          model.abrv.toLowerCase().includes(filterBy.toLowerCase())
+      )
+      .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
+  };
+
   return (
     <div className='ModelsList'>
+      <input
+        type='text'
+        value={filterBy}
+        onChange={(e) => {
+          setCurrentPage(1);
+          setFilterBy(e.target.value);
+        }}
+      />
+
       {generatePageNumbers().map((page) => (
         <PaginationButton
           key={page}
@@ -35,11 +66,9 @@ const ModelsList: React.FC<ModelsListProps> = ({ models }) => {
         </PaginationButton>
       ))}
 
-      {models
-        .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage)
-        .map((model) => (
-          <li key={model.ID}>{model.name}</li>
-        ))}
+      {generateModelsList().map((model) => (
+        <li key={model.ID}>{model.name}</li>
+      ))}
     </div>
   );
 };
