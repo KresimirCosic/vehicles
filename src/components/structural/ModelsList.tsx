@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 
 import { VehicleModel } from '../../mobx/stores/vehiclesStore';
 import PaginationButton from './PaginationButton';
+import ModelsListItem from './ModelsListItem';
 
 interface ModelsListProps {
   models: VehicleModel[];
@@ -66,8 +67,8 @@ const ModelsList: React.FC<ModelsListProps> = ({ models }) => {
         </PaginationButton>
       ))}
 
-      {generateModelsList().map((model) => (
-        <li key={model.ID}>{model.name}</li>
+      {generateModelsList().map((model, index) => (
+        <ModelsListItem key={model.ID} index={index} model={model} />
       ))}
     </div>
   );

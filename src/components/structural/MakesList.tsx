@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 
 import { VehicleMake } from '../../mobx/stores/vehiclesStore';
 import PaginationButton from './PaginationButton';
+import MakesListItem from './MakesListItem';
 
 interface MakesListProps {
   makes: VehicleMake[];
@@ -66,8 +67,8 @@ const MakesList: React.FC<MakesListProps> = ({ makes }) => {
         </PaginationButton>
       ))}
 
-      {generateMakesList().map((make) => (
-        <li key={make.ID}>{make.name}</li>
+      {generateMakesList().map((make, index) => (
+        <MakesListItem key={make.ID} index={index} make={make} />
       ))}
     </div>
   );
