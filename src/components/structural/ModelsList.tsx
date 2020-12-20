@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 
 import { VehicleModel } from '../../mobx/stores/vehiclesStore';
+import PaginationButton from './PaginationButton';
 
 interface ModelsListProps {
   models: VehicleModel[];
@@ -24,13 +25,14 @@ const ModelsList: React.FC<ModelsListProps> = ({ models }) => {
   return (
     <div className='ModelsList'>
       {generatePageNumbers().map((page) => (
-        <button
-          disabled={currentPage === page}
+        <PaginationButton
           key={page}
-          onClick={() => setCurrentPage(page)}
+          page={page}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
         >
           {page}
-        </button>
+        </PaginationButton>
       ))}
 
       {models

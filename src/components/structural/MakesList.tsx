@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 
 import { VehicleMake } from '../../mobx/stores/vehiclesStore';
+import PaginationButton from './PaginationButton';
 
 interface MakesListProps {
   makes: VehicleMake[];
@@ -24,13 +25,14 @@ const MakesList: React.FC<MakesListProps> = ({ makes }) => {
   return (
     <div className='MakesList'>
       {generatePageNumbers().map((page) => (
-        <button
-          disabled={currentPage === page}
+        <PaginationButton
           key={page}
-          onClick={() => setCurrentPage(page)}
+          page={page}
+          currentPage={currentPage}
+          setCurrentPage={setCurrentPage}
         >
           {page}
-        </button>
+        </PaginationButton>
       ))}
 
       {makes
