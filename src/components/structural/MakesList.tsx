@@ -12,9 +12,9 @@ const MakesList: React.FC<MakesListProps> = ({ makes }) => {
   const itemsPerPage = 5;
 
   const generatePageNumbers = () => {
-    const pageNumbers = [];
+    const pageNumbers: number[] = [];
 
-    for (let i = 1; i <= Math.ceil(makes.length) / itemsPerPage; i++) {
+    for (let i = 1; i <= Math.ceil(makes.length / itemsPerPage); i++) {
       pageNumbers.push(i);
     }
 
@@ -23,8 +23,6 @@ const MakesList: React.FC<MakesListProps> = ({ makes }) => {
 
   return (
     <div className='MakesList'>
-      <h1>MakesList</h1>
-
       {generatePageNumbers().map((page) => (
         <button
           disabled={currentPage === page}

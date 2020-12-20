@@ -58,7 +58,7 @@ export const pageRoutes: PageRoute[] = [
     path: '/',
     component: <Home />,
     visibleInNav: true,
-    privateRoute: false,
+    privateRoute: true,
     requiresAnonymity: false,
     requiresAdminPrivileges: false,
   },

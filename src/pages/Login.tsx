@@ -14,10 +14,16 @@ const Login: React.FC = () => {
         <button
           onClick={() => {
             authenticationStore.setUser('admin', 'deus');
-            // authenticationStore.setUser('user', 'mortale');
           }}
         >
-          Log in
+          Log in as admin
+        </button>
+        <button
+          onClick={() => {
+            authenticationStore.setUser('user', 'mortale');
+          }}
+        >
+          Log in as user
         </button>
       </div>
     </Page>

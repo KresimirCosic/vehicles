@@ -60,7 +60,14 @@ const initalMakesState: VehicleMake[] = [
   { ID: 42, name: 'Yamaha', abrv: 'YAMA' },
 ];
 
-const initalModelsState: VehicleModel[] = [];
+const initalModelsState: VehicleModel[] = [
+  { ID: 1, name: '508 SW', makeID: 32, abrv: 'PEUG' },
+  { ID: 2, name: '508', makeID: 32, abrv: 'PEUG' },
+  { ID: 3, name: '308 SW', makeID: 32, abrv: 'PEUG' },
+  { ID: 4, name: '508', makeID: 32, abrv: 'PEUG' },
+  { ID: 5, name: '3008', makeID: 32, abrv: 'PEUG' },
+  { ID: 6, name: '5008', makeID: 32, abrv: 'PEUG' },
+];
 
 export class VehiclesStore {
   rootStore;
