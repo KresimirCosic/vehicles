@@ -2,13 +2,13 @@ import { action, makeObservable, observable } from 'mobx';
 
 import { RootStore } from './rootStore';
 
-interface VehicleMake {
+export interface VehicleMake {
   ID: number;
   name: string;
   abrv: string;
 }
 
-interface VehicleModel {
+export interface VehicleModel {
   ID: number;
   name: string;
   makeID: number;
