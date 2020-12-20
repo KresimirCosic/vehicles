@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useRootStore } from '../mobx/hooks/useRootStore';
 import Page from '../components/structural/Page';
-import MakesList from '../components/structural/MakesList';
+import Makes from '../components/structural/Makes';
 
 const Dashboard: React.FC = () => {
   const { vehiclesStore } = useRootStore();
@@ -10,7 +10,7 @@ const Dashboard: React.FC = () => {
   return (
     <Page>
       <div className='Dashboard'>
-        <MakesList makes={vehiclesStore.makes} />
+        <Makes makes={vehiclesStore.makes} />
       </div>
     </Page>
   );

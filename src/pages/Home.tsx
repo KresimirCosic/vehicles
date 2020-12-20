@@ -2,7 +2,7 @@ import React from 'react';
 
 import { useRootStore } from '../mobx/hooks/useRootStore';
 import Page from '../components/structural/Page';
-import ModelsList from '../components/structural/ModelsList';
+import Models from '../components/structural/Models';
 
 const Home: React.FC = () => {
   const { vehiclesStore } = useRootStore();
@@ -10,7 +10,7 @@ const Home: React.FC = () => {
   return (
     <Page>
       <div className='Home'>
-        <ModelsList models={vehiclesStore.models} />
+        <Models models={vehiclesStore.models} />
       </div>
     </Page>
   );
