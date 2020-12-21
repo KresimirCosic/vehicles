@@ -1,5 +1,8 @@
 import React from 'react';
-import { sortingFunctions } from '../../../constants/sortingFunctions';
+import {
+  SortingFunctionName,
+  sortingFunctions,
+} from '../../../constants/sortingFunctions';
 
 import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
 import ModelsListItem from './ModelsListItem';
@@ -10,7 +13,7 @@ interface ModelsListProps {
   itemsPerPage: number;
   filterBy: string;
   gridView: boolean;
-  sortingFunctionName: keyof typeof sortingFunctions;
+  sortingFunctionName: SortingFunctionName;
 }
 
 const ModelsList: React.FC<ModelsListProps> = ({

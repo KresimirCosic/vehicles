@@ -1,28 +1,3 @@
-// export const sortingFunctions = {
-//   sortByPriceIncreasing: (a: T, b: T) => {
-//     if (a.price > b.price) return 1;
-//     if (a.price < b.price) return -1;
-//     return 0;
-//   },
-//   sortByPriceDecreasing: <T extends { price: number }>(a: T, b: T) => {
-//     if (a.price > b.price) return -1;
-//     if (a.price < b.price) return 1;
-//     return 0;
-//   },
-//   sortByNameAlphabeticallyIncreasing: <T extends { name: string }>(
-//     a: T,
-//     b: T
-//   ) => {
-//     return ('' + a.name).localeCompare(b.name);
-//   },
-//   sortByNameAlphabeticallyDecreasing: <T extends { name: string }>(
-//     a: T,
-//     b: T
-//   ) => {
-//     return -1 * ('' + a.name).localeCompare(b.name);
-//   },
-// };
-
 import { VehicleModel } from '../mobx/stores/vehiclesStore';
 
 export const sortingFunctions = {
@@ -43,3 +18,5 @@ export const sortingFunctions = {
     return -1 * ('' + a.name).localeCompare(b.name);
   },
 };
+
+export type SortingFunctionName = keyof typeof sortingFunctions;
