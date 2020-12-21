@@ -13,6 +13,7 @@ export interface VehicleModel {
   name: string;
   makeID: number;
   abrv: string;
+  price: number;
 }
 
 const initalMakesState: VehicleMake[] = [
@@ -61,12 +62,13 @@ const initalMakesState: VehicleMake[] = [
 ];
 
 const initalModelsState: VehicleModel[] = [
-  { ID: 1, name: '508 SW', makeID: 32, abrv: 'PEUG' },
-  { ID: 2, name: '508', makeID: 32, abrv: 'PEUG' },
-  { ID: 3, name: '308 SW', makeID: 32, abrv: 'PEUG' },
-  { ID: 4, name: '508', makeID: 32, abrv: 'PEUG' },
-  { ID: 5, name: '3008', makeID: 32, abrv: 'PEUG' },
-  { ID: 6, name: '5008', makeID: 32, abrv: 'PEUG' },
+  { ID: 1, name: '508 SW', makeID: 32, abrv: 'PEUG', price: 22000 },
+  { ID: 2, name: '508', makeID: 32, abrv: 'PEUG', price: 20000 },
+  { ID: 3, name: '308 SW', makeID: 32, abrv: 'PEUG', price: 18000 },
+  { ID: 4, name: '308', makeID: 32, abrv: 'PEUG', price: 16000 },
+  { ID: 5, name: '3008', makeID: 32, abrv: 'PEUG', price: 26000 },
+  { ID: 6, name: '5008', makeID: 32, abrv: 'PEUG', price: 28000 },
+  { ID: 7, name: '4C', makeID: 4, abrv: 'ALFA', price: 38000 },
 ];
 
 export class VehiclesStore {
@@ -97,13 +99,19 @@ export class VehiclesStore {
     if (index >= 0) this.makes.splice(index, 1);
   }
 
-  addModel(name: string, makeID: number) {
+  addModel(name: string, makeID: number, price: number) {
     const { abrv } = this.makes.filter((make) => make.ID === makeID)[0];
     let currentLargestModelID = Math.max(
       ...this.models.map((model) => model.ID)
     );
     if (!currentLargestModelID) currentLargestModelID = 0;
-    this.models.push({ ID: currentLargestModelID + 1, name, makeID, abrv });
+    this.models.push({
+      ID: currentLargestModelID + 1,
+      name,
+      makeID,
+      abrv,
+      price,
+    });
   }
 
   removeModel(ID: number) {

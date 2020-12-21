@@ -2,6 +2,13 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 
 import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
+import {
+  // sortByPriceIncreasing,
+  // sortByPriceDecreasing,
+  // sortByNameAlphabeticallyIncreasing,
+  // sortByNameAlphabeticallyDecreasing,
+  sortingFunctions,
+} from '../../../constants/sortingFunctions';
 import ModelsFilter from './ModelsFilter';
 import ModelsView from './ModelsView';
 import ModelsPagination from './ModelsPagination';
@@ -15,6 +22,9 @@ const Models: React.FC<ModelsProps> = ({ models }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterBy, setFilterBy] = useState('');
   const [gridView, setGridView] = useState(false);
+  const [sortingFunctionName, setSortingFunctionName] = useState<
+    keyof typeof sortingFunctions
+  >('sortByPriceDecreasing');
   const itemsPerPage = 5;
 
   return (
@@ -24,6 +34,24 @@ const Models: React.FC<ModelsProps> = ({ models }) => {
         setFilterBy={setFilterBy}
         setCurrentPage={setCurrentPage}
       />
+
+      <select
+        name=''
+        id=''
+        onChange={(e) =>
+          setSortingFunctionName(
+            e.target.value as keyof typeof sortingFunctions
+          )
+        }
+      >
+        {Object.keys(sortingFunctions).map((sortingFunction, index) => {
+          return (
+            <option key={index} value={sortingFunction}>
+              {Object.keys(sortingFunctions)[index]}
+            </option>
+          );
+        })}
+      </select>
 
       <ModelsView gridView={gridView} setGridView={setGridView} />
 
@@ -41,6 +69,7 @@ const Models: React.FC<ModelsProps> = ({ models }) => {
         itemsPerPage={itemsPerPage}
         filterBy={filterBy}
         gridView={gridView}
+        sortingFunctionName={sortingFunctionName}
       />
     </div>
   );

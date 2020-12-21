@@ -1,4 +1,5 @@
 import React from 'react';
+import { sortingFunctions } from '../../../constants/sortingFunctions';
 
 import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
 import ModelsListItem from './ModelsListItem';
@@ -9,6 +10,7 @@ interface ModelsListProps {
   itemsPerPage: number;
   filterBy: string;
   gridView: boolean;
+  sortingFunctionName: keyof typeof sortingFunctions;
 }
 
 const ModelsList: React.FC<ModelsListProps> = ({
@@ -17,6 +19,7 @@ const ModelsList: React.FC<ModelsListProps> = ({
   itemsPerPage,
   filterBy,
   gridView,
+  sortingFunctionName,
 }) => {
   const generateModels = () => {
     return models
@@ -25,6 +28,7 @@ const ModelsList: React.FC<ModelsListProps> = ({
           model.name.toLowerCase().includes(filterBy.toLowerCase()) ||
           model.abrv.toLowerCase().includes(filterBy.toLowerCase())
       )
+      .sort(sortingFunctions[sortingFunctionName])
       .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
   };
 

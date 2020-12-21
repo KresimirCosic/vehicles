@@ -28,7 +28,7 @@ const ModelsListItem: React.FC<ModelsListItemProps> = ({ index, model }) => {
       nodeRef={nodeRef}
     >
       <li className='ModelsListItem' ref={nodeRef}>
-        {model.name}
+        {model.name} (${model.price})
       </li>
     </CSSTransition>
   );
