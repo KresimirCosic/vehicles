@@ -42,7 +42,10 @@ const Models: React.FC<ModelsProps> = ({ models }) => {
         {Object.keys(sortingFunctions).map((sortingFunction, index) => {
           return (
             <option key={index} value={sortingFunction}>
-              {Object.keys(sortingFunctions)[index]}
+              {
+                sortingFunctions[sortingFunction as SortingFunctionName]
+                  .description
+              }
             </option>
           );
         })}

@@ -31,7 +31,7 @@ const ModelsList: React.FC<ModelsListProps> = ({
           model.name.toLowerCase().includes(filterBy.toLowerCase()) ||
           model.abrv.toLowerCase().includes(filterBy.toLowerCase())
       )
-      .sort(sortingFunctions[sortingFunctionName])
+      .sort(sortingFunctions[sortingFunctionName].function)
       .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);
   };
 
