@@ -3,6 +3,10 @@
   border: 1px solid #ddd;
   padding: 2rem 4rem;
   margin-bottom: 2rem;
+  border: 3px solid $color-quinary;
+  &:hover {
+    border: 3px solid $color-black;
+  }
   transition: opacity $duration-animation-fade-in ease-out,
     transform $duration-animation-fade-in ease-out;
   opacity: 0;

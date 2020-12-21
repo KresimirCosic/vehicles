@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 
 import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
 import ModelsFilter from './ModelsFilter';
+import ModelsView from './ModelsView';
 import ModelsPagination from './ModelsPagination';
 import ModelsList from './ModelsList';
 
@@ -13,6 +14,7 @@ interface ModelsProps {
 const Models: React.FC<ModelsProps> = ({ models }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterBy, setFilterBy] = useState('');
+  const [gridView, setGridView] = useState(false);
   const itemsPerPage = 5;
 
   return (
@@ -22,6 +24,8 @@ const Models: React.FC<ModelsProps> = ({ models }) => {
         setFilterBy={setFilterBy}
         setCurrentPage={setCurrentPage}
       />
+
+      <ModelsView gridView={gridView} setGridView={setGridView} />
 
       <ModelsPagination
         models={models}
@@ -36,6 +40,7 @@ const Models: React.FC<ModelsProps> = ({ models }) => {
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}
         filterBy={filterBy}
+        gridView={gridView}
       />
     </div>
   );

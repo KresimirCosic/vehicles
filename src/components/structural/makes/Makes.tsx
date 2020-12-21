@@ -3,6 +3,7 @@ import { observer } from 'mobx-react';
 
 import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
 import MakesFilter from './MakesFilter';
+import MakesView from './MakesView';
 import MakesPagination from './MakesPagination';
 import MakesList from './MakesList';
 
@@ -13,6 +14,7 @@ interface MakesProps {
 const Makes: React.FC<MakesProps> = ({ makes }) => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterBy, setFilterBy] = useState('');
+  const [gridView, setGridView] = useState(false);
   const itemsPerPage = 5;
 
   return (
@@ -22,6 +24,8 @@ const Makes: React.FC<MakesProps> = ({ makes }) => {
         setFilterBy={setFilterBy}
         setCurrentPage={setCurrentPage}
       />
+
+      <MakesView gridView={gridView} setGridView={setGridView} />
 
       <MakesPagination
         makes={makes}
@@ -36,6 +40,7 @@ const Makes: React.FC<MakesProps> = ({ makes }) => {
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}
         filterBy={filterBy}
+        gridView={gridView}
       />
     </div>
   );

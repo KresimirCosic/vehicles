@@ -8,6 +8,7 @@ interface ModelsListProps {
   currentPage: number;
   itemsPerPage: number;
   filterBy: string;
+  gridView: boolean;
 }
 
 const ModelsList: React.FC<ModelsListProps> = ({
@@ -15,6 +16,7 @@ const ModelsList: React.FC<ModelsListProps> = ({
   currentPage,
   itemsPerPage,
   filterBy,
+  gridView,
 }) => {
   const generateModels = () => {
     return models
@@ -27,7 +29,7 @@ const ModelsList: React.FC<ModelsListProps> = ({
   };
 
   return (
-    <ul className='ModelsList'>
+    <ul className={gridView ? 'ModelsList grid' : 'ModelsList'}>
       {generateModels().map((model, index) => (
         <ModelsListItem key={model.ID} index={index} model={model} />
       ))}

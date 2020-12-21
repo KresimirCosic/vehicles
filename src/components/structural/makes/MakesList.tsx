@@ -8,6 +8,7 @@ interface MakesListProps {
   currentPage: number;
   itemsPerPage: number;
   filterBy: string;
+  gridView: boolean;
 }
 
 const MakesList: React.FC<MakesListProps> = ({
@@ -15,6 +16,7 @@ const MakesList: React.FC<MakesListProps> = ({
   currentPage,
   itemsPerPage,
   filterBy,
+  gridView,
 }) => {
   const generateMakes = () => {
     return makes
@@ -27,7 +29,7 @@ const MakesList: React.FC<MakesListProps> = ({
   };
 
   return (
-    <ul className='MakesList'>
+    <ul className={gridView ? 'MakesList grid' : 'MakesList'}>
       {generateMakes().map((make, index) => (
         <MakesListItem key={make.ID} index={index} make={make} />
       ))}
