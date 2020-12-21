@@ -1,18 +1,18 @@
 import React, { Dispatch, SetStateAction } from 'react';
 
-import { VehicleMake } from '../../mobx/stores/vehiclesStore';
-import PaginationButton from './PaginationButton';
+import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
+import PaginationButton from '../PaginationButton';
 
-interface MakesControlsProps {
-  makes: VehicleMake[];
+interface ModelsPaginationProps {
+  models: VehicleModel[];
   filterBy: string;
   itemsPerPage: number;
   currentPage: number;
   setCurrentPage: Dispatch<SetStateAction<number>>;
 }
 
-const MakesControls: React.FC<MakesControlsProps> = ({
-  makes,
+const ModelsPagination: React.FC<ModelsPaginationProps> = ({
+  models,
   filterBy,
   itemsPerPage,
   currentPage,
@@ -25,10 +25,10 @@ const MakesControls: React.FC<MakesControlsProps> = ({
       let i = 1;
       i <=
       Math.ceil(
-        makes.filter(
-          (make) =>
-            make.name.toLowerCase().includes(filterBy.toLowerCase()) ||
-            make.abrv.toLowerCase().includes(filterBy.toLowerCase())
+        models.filter(
+          (model) =>
+            model.name.toLowerCase().includes(filterBy.toLowerCase()) ||
+            model.abrv.toLowerCase().includes(filterBy.toLowerCase())
         ).length / itemsPerPage
       );
       i++
@@ -40,7 +40,7 @@ const MakesControls: React.FC<MakesControlsProps> = ({
   };
 
   return (
-    <div className='MakesControls'>
+    <div className='ModelsPagination'>
       {generatePageNumbers().map((page) => (
         <PaginationButton
           key={page}
@@ -55,4 +55,4 @@ const MakesControls: React.FC<MakesControlsProps> = ({
   );
 };
 
-export default MakesControls;
+export default ModelsPagination;

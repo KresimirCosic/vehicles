@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { VehicleModel } from '../../mobx/stores/vehiclesStore';
+import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
 import ModelsListItem from './ModelsListItem';
 
 interface ModelsListProps {

@@ -19,7 +19,22 @@
 @import './components/animated/ScaleIn';
 
 // Structural components
-@import './components/structural/Nav';
-@import './components/structural/LoaderAnimation';
 @import './components/structural/Loader';
-@import './components/utility/Page';
+@import './components/structural/LoaderAnimation';
+@import './components/structural/Nav';
+@import './components/structural/Page';
+@import './components/structural/PaginationButton';
+
+// Structural components (makes)
+@import './components/structural/makes/Makes';
+@import './components/structural/makes/MakesPagination';
+@import './components/structural/makes/MakesFilter';
+@import './components/structural/makes/MakesList';
+@import './components/structural/makes/MakesListItem';
+
+// Structural components (models)
+@import './components/structural/models/Models';
+@import './components/structural/models/ModelsPagination';
+@import './components/structural/models/ModelsFilter';
+@import './components/structural/models/ModelsList';
+@import './components/structural/models/ModelsListItem';

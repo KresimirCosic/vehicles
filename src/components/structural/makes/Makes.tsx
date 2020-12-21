@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 
-import { VehicleMake } from '../../mobx/stores/vehiclesStore';
+import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
+import MakesFilter from './MakesFilter';
+import MakesPagination from './MakesPagination';
 import MakesList from './MakesList';
-import MakesControls from './MakesControls';
 
 interface MakesProps {
   makes: VehicleMake[];
@@ -16,16 +17,13 @@ const Makes: React.FC<MakesProps> = ({ makes }) => {
 
   return (
     <div className='Makes'>
-      <input
-        type='text'
-        value={filterBy}
-        onChange={(e) => {
-          setCurrentPage(1);
-          setFilterBy(e.target.value);
-        }}
+      <MakesFilter
+        filterBy={filterBy}
+        setFilterBy={setFilterBy}
+        setCurrentPage={setCurrentPage}
       />
 
-      <MakesControls
+      <MakesPagination
         makes={makes}
         filterBy={filterBy}
         itemsPerPage={itemsPerPage}

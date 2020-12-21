@@ -1,0 +1,18 @@
+.PaginationButton {
+  width: 40px;
+  height: 40px;
+  border: none;
+  outline: none;
+  margin-bottom: 0.4rem;
+  &:not(:disabled) {
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  &:disabled {
+    box-shadow: inset 0px 0px 5px 0px rgba(0, 0, 0, 0.5);
+    &:hover {
+      cursor: not-allowed;
+    }
+  }
+}

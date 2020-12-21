@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 
-import { VehicleModel } from '../../mobx/stores/vehiclesStore';
-import ModelsControls from './ModelsControls';
+import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
+import ModelsFilter from './ModelsFilter';
+import ModelsPagination from './ModelsPagination';
 import ModelsList from './ModelsList';
 
 interface ModelsProps {
@@ -16,16 +17,13 @@ const Models: React.FC<ModelsProps> = ({ models }) => {
 
   return (
     <div className='Models'>
-      <input
-        type='text'
-        value={filterBy}
-        onChange={(e) => {
-          setCurrentPage(1);
-          setFilterBy(e.target.value);
-        }}
+      <ModelsFilter
+        filterBy={filterBy}
+        setFilterBy={setFilterBy}
+        setCurrentPage={setCurrentPage}
       />
 
-      <ModelsControls
+      <ModelsPagination
         models={models}
         filterBy={filterBy}
         itemsPerPage={itemsPerPage}

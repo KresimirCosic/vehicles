@@ -1,0 +1,15 @@
+.ModelsList {
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  & > &Item {
+    width: 100%;
+  }
+  &.grid {
+    justify-content: space-between;
+  }
+  &.grid > &Item {
+    width: 45%;
+  }
+}

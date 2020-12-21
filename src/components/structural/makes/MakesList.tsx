@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { VehicleMake } from '../../mobx/stores/vehiclesStore';
+import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
 import MakesListItem from './MakesListItem';
 
 interface MakesListProps {

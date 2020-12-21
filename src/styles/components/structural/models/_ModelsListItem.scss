@@ -1,0 +1,30 @@
+.ModelsListItem {
+  background-color: $color-white;
+  border: 1px solid #ddd;
+  padding: 2rem 4rem;
+  margin-bottom: 2rem;
+  transition: opacity $duration-animation-fade-in ease-out,
+    transform $duration-animation-fade-in ease-out;
+  opacity: 0;
+  transform: translateY(-0.5rem);
+  &-enter {
+    &-active {
+      opacity: 1;
+      transform: translateY(-0.5rem);
+    }
+    &-done {
+      opacity: 1;
+      transform: translateY(0%);
+    }
+  }
+  &-exit {
+    &-active {
+      opacity: 0;
+      transform: translateY(-0.5rem);
+    }
+    &-done {
+      opacity: 0;
+      transform: translateY(-0.5rem);
+    }
+  }
+}
