@@ -18,13 +18,13 @@ export const sortingFunctions = {
     },
   },
   sortByNameAlphabeticallyIncreasing: {
-    description: 'Alphabet',
+    description: 'Alphabetically',
     function: (a: VehicleModel, b: VehicleModel) => {
       return ('' + a.name).localeCompare(b.name);
     },
   },
   sortByNameAlphabeticallyDecreasing: {
-    description: 'Alphabet (reverse)',
+    description: 'Alphabetically (reverse)',
     function: (a: VehicleModel, b: VehicleModel) => {
       return -1 * ('' + a.name).localeCompare(b.name);
     },

@@ -2,14 +2,12 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 
 import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
-import {
-  SortingFunctionName,
-  sortingFunctions,
-} from '../../../constants/sortingFunctions';
+import { SortingFunctionName } from '../../../constants/sortingFunctions';
 import ModelsFilter from './ModelsFilter';
 import ModelsView from './ModelsView';
 import ModelsPagination from './ModelsPagination';
 import ModelsList from './ModelsList';
+import ModelsSort from './ModelsSort';
 
 interface ModelsProps {
   models: VehicleModel[];
@@ -33,23 +31,10 @@ const Models: React.FC<ModelsProps> = ({ models }) => {
         setCurrentPage={setCurrentPage}
       />
 
-      <select
-        value={sortingFunctionName}
-        onChange={(e) =>
-          setSortingFunctionName(e.target.value as SortingFunctionName)
-        }
-      >
-        {Object.keys(sortingFunctions).map((sortingFunction, index) => {
-          return (
-            <option key={index} value={sortingFunction}>
-              {
-                sortingFunctions[sortingFunction as SortingFunctionName]
-                  .description
-              }
-            </option>
-          );
-        })}
-      </select>
+      <ModelsSort
+        sortingFunctionName={sortingFunctionName}
+        setSortingFunctionName={setSortingFunctionName}
+      />
 
       <ModelsView gridView={gridView} setGridView={setGridView} />
 
