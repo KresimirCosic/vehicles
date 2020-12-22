@@ -8,11 +8,51 @@
   background-color: $color-primary;
   &-form {
     display: flex;
-    flex-direction: column;
     align-items: center;
-    &-name,
-    &-abrv {
-      padding: 0.5rem 1rem;
+    justify-content: space-between;
+    flex-direction: column;
+    height: 100%;
+    &-inputs,
+    &-controls {
+      display: flex;
+      & > * {
+        padding: 0.5rem 1rem;
+      }
+    }
+    &-inputs {
+      width: 100%;
+      flex-direction: column;
+      & > *:not(:last-child) {
+        margin-bottom: 1rem;
+      }
+    }
+    &-controls {
+      width: 100%;
+      justify-content: space-around;
+    }
+  }
+  transition: opacity $duration-animation-scale-in ease-out,
+    transform $duration-animation-scale-in ease-out;
+  opacity: 0;
+  transform: scale(1.2);
+  &-enter {
+    &-active {
+      opacity: 0;
+      transform: scale(1);
+    }
+    &-done {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+  &-exit {
+    &-active {
+      opacity: 0;
+      transform: scale(1.2);
+    }
+    &-done {
+      opacity: 0;
+      transform: scale(1.2);
     }
   }
 }

@@ -69,9 +69,8 @@ const MakesListItem: React.FC<MakesListItemProps> = ({ index, make }) => {
 
         {editing && (
           <MakesListItemEdit
-            ID={make.ID}
-            name={make.name}
-            abrv={make.abrv}
+            make={make}
+            editing={editing}
             setEditing={setEditing}
           />
         )}
