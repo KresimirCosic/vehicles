@@ -81,6 +81,7 @@ export class VehiclesStore {
       makes: observable,
       models: observable,
       addMake: action,
+      editMake: action,
       removeMake: action,
       addModel: action,
       removeModel: action,
@@ -94,7 +95,25 @@ export class VehiclesStore {
     this.makes.push({ ID: currentLargestMakeID + 1, name, abrv });
   }
 
+  editMake(ID: number, name: string, abrv: string) {
+    const index = this.makes.findIndex((make) => make.ID === ID);
+    if (index >= 0) {
+      this.makes[index] = {
+        ID,
+        name,
+        abrv,
+      };
+    }
+  }
+
+  removeAllModelsOfMake(ID: number) {
+    const newModelsList = this.models.filter((model) => model.makeID !== ID);
+    this.models = [...newModelsList];
+  }
+
   removeMake(ID: number) {
+    this.removeAllModelsOfMake(ID);
+
     const index = this.makes.findIndex((make) => make.ID === ID);
     if (index >= 0) this.makes.splice(index, 1);
   }

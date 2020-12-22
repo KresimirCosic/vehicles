@@ -51,6 +51,9 @@
     justify-content: space-around;
     &-button {
       padding: 0.5rem 1rem;
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
     }
   }
 }

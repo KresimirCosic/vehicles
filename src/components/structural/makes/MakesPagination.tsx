@@ -1,4 +1,5 @@
 import React, { Dispatch, SetStateAction } from 'react';
+import { observer } from 'mobx-react';
 
 import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
 import PaginationButton from '../PaginationButton';
@@ -55,4 +56,4 @@ const MakesPagination: React.FC<MakesPaginationProps> = ({
   );
 };
 
-export default MakesPagination;
+export default observer(MakesPagination);

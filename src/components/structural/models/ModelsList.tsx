@@ -1,10 +1,13 @@
 import React from 'react';
+import { observer } from 'mobx-react';
+
 import {
   SortingFunctionName,
   sortingFunctions,
 } from '../../../constants/sortingFunctions';
 
 import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
+
 import ModelsListItem from './ModelsListItem';
 
 interface ModelsListProps {
@@ -44,4 +47,4 @@ const ModelsList: React.FC<ModelsListProps> = ({
   );
 };
 
-export default ModelsList;
+export default observer(ModelsList);

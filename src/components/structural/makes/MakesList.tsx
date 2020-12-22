@@ -1,4 +1,5 @@
 import React from 'react';
+import { observer } from 'mobx-react';
 
 import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
 import MakesListItem from './MakesListItem';
@@ -37,4 +38,4 @@ const MakesList: React.FC<MakesListProps> = ({
   );
 };
 
-export default MakesList;
+export default observer(MakesList);
