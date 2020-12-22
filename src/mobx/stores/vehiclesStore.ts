@@ -82,8 +82,10 @@ export class VehiclesStore {
       models: observable,
       addMake: action,
       editMake: action,
+      removeAllModelsOfMake: action,
       removeMake: action,
       addModel: action,
+      editModel: action,
       removeModel: action,
     });
     this.rootStore = rootStore;
@@ -133,6 +135,15 @@ export class VehiclesStore {
       abrv,
       price,
     });
+  }
+
+  editModel(ID: number, name: string, price: number) {
+    const index = this.models.findIndex((model) => model.ID === ID);
+    this.models[index] = {
+      ...this.models[index],
+      name,
+      price,
+    };
   }
 
   removeModel(ID: number) {

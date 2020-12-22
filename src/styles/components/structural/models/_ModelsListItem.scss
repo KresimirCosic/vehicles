@@ -1,7 +1,8 @@
 .ModelsListItem {
+  min-height: 235px;
   background-color: $color-white;
   border: 1px solid #ddd;
-  padding: 2rem 4rem;
+  padding: 0.5rem;
   margin-bottom: 2rem;
   border: 3px solid $color-quinary;
   &:hover {
@@ -29,6 +30,34 @@
     &-done {
       opacity: 0;
       transform: translateY(-0.5rem);
+    }
+  }
+  display: flex;
+  justify-content: space-between;
+  & > * {
+    padding: 1rem;
+    text-align: center;
+  }
+  &:hover {
+    border: 3px solid $color-black;
+  }
+  &-card {
+    background-color: $color-primary;
+    color: $color-white;
+    width: 35%;
+  }
+  &-controls {
+    background-color: $color-secondary;
+    color: $color-white;
+    width: 65%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    &-button {
+      padding: 0.5rem 1rem;
+      &:not(:last-child) {
+        margin-bottom: 1rem;
+      }
     }
   }
 }

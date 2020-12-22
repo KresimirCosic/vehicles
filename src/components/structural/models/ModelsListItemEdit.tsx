@@ -2,28 +2,29 @@ import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import { scaleInDuration } from '../../../constants/durations';
+import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
 import { useRootStore } from '../../../mobx/hooks/useRootStore';
-import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
 
-interface MakesListItemEditProps {
-  make: VehicleMake;
+interface ModelsListItemEditProps {
+  model: VehicleModel;
   editing: boolean;
   setEditing: Dispatch<SetStateAction<boolean>>;
 }
 
-const MakesListItemEdit: React.FC<MakesListItemEditProps> = ({
-  make,
+const ModelsListItemEdit: React.FC<ModelsListItemEditProps> = ({
+  model,
   editing,
   setEditing,
 }) => {
-  const { ID, name, abrv } = make;
   const nodeRef = useRef(null);
+  const { ID, name, price } = model;
   const [newName, setNewName] = useState(name);
-  const [newAbrv, setNewAbrv] = useState(abrv);
+  const [newPrice, setNewPrice] = useState(price);
   const { vehiclesStore } = useRootStore();
 
-  const editMake = () => {
-    vehiclesStore.editMake(ID, newName, newAbrv);
+  const editModel = () => {
+    vehiclesStore.editModel(ID, newName, newPrice);
+    setEditing(false);
   };
 
   return (
@@ -33,7 +34,7 @@ const MakesListItemEdit: React.FC<MakesListItemEditProps> = ({
       enter
       mountOnEnter
       unmountOnExit
-      classNames='MakesListItemEdit'
+      classNames='ModelsListItemEdit'
       timeout={{
         appear: scaleInDuration,
         enter: scaleInDuration,
@@ -41,37 +42,35 @@ const MakesListItemEdit: React.FC<MakesListItemEditProps> = ({
       }}
       nodeRef={nodeRef}
     >
-      <div className='MakesListItemEdit' ref={nodeRef}>
-        <form className='MakesListItemEdit-form'>
-          <div className='MakesListItemEdit-form-inputs'>
+      <div className='ModelsListItemEdit' ref={nodeRef}>
+        <form className='ModelsListItemEdit-form'>
+          <div className='ModelsListItemEdit-form-inputs'>
             <input
-              className='MakesListItemEdit-form-inputs-name'
+              className='ModelsListItemEdit-form-inputs-name'
               type='text'
               value={newName}
               onChange={(e) => setNewName(e.target.value)}
             />
             <input
-              className='MakesListItemEdit-form-inputs-abrv'
-              type='text'
-              value={newAbrv}
-              onChange={(e) => setNewAbrv(e.target.value)}
+              className='ModelsListItemEdit-form-inputs-price'
+              type='number'
+              min={1}
+              value={newPrice}
+              onChange={(e) => setNewPrice(parseInt(e.target.value))}
             />
           </div>
-          <div className='MakesListItemEdit-form-controls'>
+          <div className='ModelsListItemEdit-form-controls'>
             <button
-              className='MakesListItemEdit-form-controls-button'
+              className='ModelsListItemEdit-form-controls-button'
               type='button'
               onClick={() => setEditing(false)}
             >
               Cancel
             </button>
             <button
-              className='MakesListItemEdit-form-controls-button'
+              className='ModelsListItemEdit-form-controls-button'
               type='button'
-              onClick={() => {
-                editMake();
-                setEditing(false);
-              }}
+              onClick={() => editModel()}
             >
               Confirm
             </button>
@@ -82,4 +81,4 @@ const MakesListItemEdit: React.FC<MakesListItemEditProps> = ({
   );
 };
 
-export default MakesListItemEdit;
+export default ModelsListItemEdit;
