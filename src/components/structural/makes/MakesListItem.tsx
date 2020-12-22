@@ -7,6 +7,7 @@ import { fadeInDuration } from '../../../constants/durations';
 import { useRootStore } from '../../../mobx/hooks/useRootStore';
 
 import MakesListItemEdit from './MakesListItemEdit';
+import MakesListItemAdd from './MakesListItemAdd';
 
 interface MakesListItemProps {
   index: number;
@@ -15,6 +16,7 @@ interface MakesListItemProps {
 
 const MakesListItem: React.FC<MakesListItemProps> = ({ index, make }) => {
   const nodeRef = useRef(null);
+  const [adding, setAdding] = useState(false);
   const [editing, setEditing] = useState(false);
   const { vehiclesStore } = useRootStore();
 
@@ -56,7 +58,10 @@ const MakesListItem: React.FC<MakesListItemProps> = ({ index, make }) => {
           >
             Edit the make
           </button>
-          <button className='MakesListItem-controls-button'>
+          <button
+            className='MakesListItem-controls-button'
+            onClick={() => setAdding(true)}
+          >
             Add a new model
           </button>
           <button
@@ -73,6 +78,10 @@ const MakesListItem: React.FC<MakesListItemProps> = ({ index, make }) => {
             editing={editing}
             setEditing={setEditing}
           />
+        )}
+
+        {adding && (
+          <MakesListItemAdd make={make} adding={adding} setAdding={setAdding} />
         )}
       </li>
     </CSSTransition>

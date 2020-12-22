@@ -1,7 +1,7 @@
 import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
-import { scaleInDuration } from '../../../constants/durations';
 
+import { scaleInDuration } from '../../../constants/durations';
 import { useRootStore } from '../../../mobx/hooks/useRootStore';
 import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
 
