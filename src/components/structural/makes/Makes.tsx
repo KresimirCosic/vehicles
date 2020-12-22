@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 
 import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
+import MakesAddMake from './MakesAddMake';
 import MakesFilter from './MakesFilter';
 import MakesView from './MakesView';
 import MakesPagination from './MakesPagination';
@@ -19,6 +20,8 @@ const Makes: React.FC<MakesProps> = ({ makes }) => {
 
   return (
     <div className='Makes'>
+      <MakesAddMake />
+
       <MakesFilter
         filterBy={filterBy}
         setFilterBy={setFilterBy}

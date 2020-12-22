@@ -93,6 +93,8 @@ export class VehiclesStore {
     let currentLargestMakeID = Math.max(...this.makes.map((make) => make.ID));
     if (!currentLargestMakeID) currentLargestMakeID = 0;
     this.makes.push({ ID: currentLargestMakeID + 1, name, abrv });
+
+    console.log(this.makes);
   }
 
   editMake(ID: number, name: string, abrv: string) {
