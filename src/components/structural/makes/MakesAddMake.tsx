@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
 
-import { useRootStore } from '../../../mobx/hooks/useRootStore';
+import { vehiclesService } from '../../../services/vehiclesService';
 
 const MakesAddMake: React.FC = () => {
-  const { vehiclesStore } = useRootStore();
   const [name, setName] = useState('');
   const [abrv, setAbrv] = useState('');
 
   const createMake = () => {
-    vehiclesStore.addMake(name, abrv);
+    vehiclesService.createMake(name, abrv);
     resetForm();
   };
 

@@ -2,8 +2,8 @@ import React, { Dispatch, SetStateAction, useRef, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import { scaleInDuration } from '../../../constants/durations';
-import { useRootStore } from '../../../mobx/hooks/useRootStore';
 import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
+import { vehiclesService } from '../../../services/vehiclesService';
 
 interface MakesListItemEditProps {
   make: VehicleMake;
@@ -20,10 +20,9 @@ const MakesListItemEdit: React.FC<MakesListItemEditProps> = ({
   const nodeRef = useRef(null);
   const [newName, setNewName] = useState(name);
   const [newAbrv, setNewAbrv] = useState(abrv);
-  const { vehiclesStore } = useRootStore();
 
   const editMake = () => {
-    vehiclesStore.editMake(ID, newName, newAbrv);
+    vehiclesService.editMake(ID, newName, newAbrv);
   };
 
   return (

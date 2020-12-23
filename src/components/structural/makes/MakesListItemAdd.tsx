@@ -2,8 +2,8 @@ import React, { useRef, Dispatch, SetStateAction, useState } from 'react';
 import { CSSTransition } from 'react-transition-group';
 
 import { scaleInDuration } from '../../../constants/durations';
-import { useRootStore } from '../../../mobx/hooks/useRootStore';
 import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
+import { vehiclesService } from '../../../services/vehiclesService';
 
 interface MakesListItemAddProps {
   make: VehicleMake;
@@ -20,17 +20,10 @@ const MakesListItemAdd: React.FC<MakesListItemAddProps> = ({
   const [price, setPrice] = useState(1);
   const nodeRef = useRef(null);
   const { ID } = make;
-  const { vehiclesStore } = useRootStore();
 
   const createModel = () => {
-    vehiclesStore.addModel(name, ID, price);
-    resetForm();
+    vehiclesService.createModel(name, ID, price);
     setAdding(false);
-  };
-
-  const resetForm = () => {
-    setName('');
-    setPrice(1);
   };
 
   return (

@@ -1,26 +1,24 @@
 import React from 'react';
 
-import { useRootStore } from '../mobx/hooks/useRootStore';
+import { authenticationService } from '../services/authenticationService';
 
 import Page from '../components/structural/Page';
 
 const Login: React.FC = () => {
-  const { authenticationStore } = useRootStore();
-
   return (
     <Page>
       <div>
         <h1>Login</h1>
         <button
           onClick={() => {
-            authenticationStore.setUser('admin', 'deus');
+            authenticationService.login('admin', 'deus');
           }}
         >
           Log in as admin
         </button>
         <button
           onClick={() => {
-            authenticationStore.setUser('user', 'mortale');
+            authenticationService.login('user', 'mortale');
           }}
         >
           Log in as user

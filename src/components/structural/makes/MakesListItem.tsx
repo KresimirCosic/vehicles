@@ -5,6 +5,7 @@ import { observer } from 'mobx-react';
 import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
 import { fadeInDuration } from '../../../constants/durations';
 import { useRootStore } from '../../../mobx/hooks/useRootStore';
+import { vehiclesService } from '../../../services/vehiclesService';
 
 import MakesListItemEdit from './MakesListItemEdit';
 import MakesListItemAdd from './MakesListItemAdd';
@@ -66,7 +67,7 @@ const MakesListItem: React.FC<MakesListItemProps> = ({ index, make }) => {
           </button>
           <button
             className='MakesListItem-controls-button'
-            onClick={() => vehiclesStore.removeMake(make.ID)}
+            onClick={() => vehiclesService.deleteMake(make.ID)}
           >
             Delete the make
           </button>

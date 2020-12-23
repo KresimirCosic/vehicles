@@ -1,27 +1,24 @@
 import React, { useState } from 'react';
 import { observer } from 'mobx-react';
 
-import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
 import { SortingFunctionName } from '../../../constants/sortingFunctions';
 import ModelsFilter from './ModelsFilter';
 import ModelsView from './ModelsView';
 import ModelsPagination from './ModelsPagination';
 import ModelsList from './ModelsList';
 import ModelsSort from './ModelsSort';
+import { useRootStore } from '../../../mobx/hooks/useRootStore';
 
-interface ModelsProps {
-  models: VehicleModel[];
-}
-
-const Models: React.FC<ModelsProps> = ({ models }) => {
+const Models: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [filterBy, setFilterBy] = useState('');
   const [gridView, setGridView] = useState(false);
+  const itemsPerPage = 5;
   const [
     sortingFunctionName,
     setSortingFunctionName,
   ] = useState<SortingFunctionName>('sortByPriceIncreasing');
-  const itemsPerPage = 5;
+  const { models } = useRootStore().vehiclesStore;
 
   return (
     <div className='Models'>
@@ -39,7 +36,6 @@ const Models: React.FC<ModelsProps> = ({ models }) => {
       <ModelsView gridView={gridView} setGridView={setGridView} />
 
       <ModelsPagination
-        models={models}
         filterBy={filterBy}
         itemsPerPage={itemsPerPage}
         currentPage={currentPage}
@@ -47,7 +43,6 @@ const Models: React.FC<ModelsProps> = ({ models }) => {
       />
 
       <ModelsList
-        models={models}
         currentPage={currentPage}
         itemsPerPage={itemsPerPage}
         filterBy={filterBy}

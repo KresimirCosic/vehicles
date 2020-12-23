@@ -2,6 +2,7 @@ import React, { Dispatch, SetStateAction } from 'react';
 
 import { useRootStore } from '../../../mobx/hooks/useRootStore';
 import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
+import { vehiclesService } from '../../../services/vehiclesService';
 
 interface ModelsListItemControlsProps {
   model: VehicleModel;
@@ -12,12 +13,12 @@ const ModelsListItemControls: React.FC<ModelsListItemControlsProps> = ({
   model,
   setEditing,
 }) => {
-  const { authenticationStore, vehiclesStore } = useRootStore();
+  const { authenticationStore } = useRootStore();
   const { user } = authenticationStore;
   const { ID } = model;
 
   const deleteModel = () => {
-    vehiclesStore.removeModel(ID);
+    vehiclesService.deleteModel(ID);
   };
 
   return (

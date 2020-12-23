@@ -1,11 +1,10 @@
 import React from 'react';
 import { observer } from 'mobx-react';
 
-import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
 import MakesListItem from './MakesListItem';
+import { useRootStore } from '../../../mobx/hooks/useRootStore';
 
 interface MakesListProps {
-  makes: VehicleMake[];
   currentPage: number;
   itemsPerPage: number;
   filterBy: string;
@@ -13,12 +12,13 @@ interface MakesListProps {
 }
 
 const MakesList: React.FC<MakesListProps> = ({
-  makes,
   currentPage,
   itemsPerPage,
   filterBy,
   gridView,
 }) => {
+  const { makes } = useRootStore().vehiclesStore;
+
   const generateMakes = () => {
     return makes
       .filter(

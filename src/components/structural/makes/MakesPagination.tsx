@@ -1,11 +1,10 @@
 import React, { Dispatch, SetStateAction } from 'react';
 import { observer } from 'mobx-react';
 
-import { VehicleMake } from '../../../mobx/stores/vehiclesStore';
 import PaginationButton from '../PaginationButton';
+import { useRootStore } from '../../../mobx/hooks/useRootStore';
 
 interface MakesPaginationProps {
-  makes: VehicleMake[];
   filterBy: string;
   itemsPerPage: number;
   currentPage: number;
@@ -13,12 +12,13 @@ interface MakesPaginationProps {
 }
 
 const MakesPagination: React.FC<MakesPaginationProps> = ({
-  makes,
   filterBy,
   itemsPerPage,
   currentPage,
   setCurrentPage,
 }) => {
+  const { makes } = useRootStore().vehiclesStore;
+
   const generatePageNumbers = () => {
     const pageNumbers: number[] = [];
 

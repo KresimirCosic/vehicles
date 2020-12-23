@@ -6,12 +6,10 @@ import {
   sortingFunctions,
 } from '../../../constants/sortingFunctions';
 
-import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
-
 import ModelsListItem from './ModelsListItem';
+import { useRootStore } from '../../../mobx/hooks/useRootStore';
 
 interface ModelsListProps {
-  models: VehicleModel[];
   currentPage: number;
   itemsPerPage: number;
   filterBy: string;
@@ -20,13 +18,14 @@ interface ModelsListProps {
 }
 
 const ModelsList: React.FC<ModelsListProps> = ({
-  models,
   currentPage,
   itemsPerPage,
   filterBy,
   gridView,
   sortingFunctionName,
 }) => {
+  const { models } = useRootStore().vehiclesStore;
+
   const generateModels = () => {
     return models
       .filter(

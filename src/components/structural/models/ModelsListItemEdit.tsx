@@ -3,7 +3,7 @@ import { CSSTransition } from 'react-transition-group';
 
 import { scaleInDuration } from '../../../constants/durations';
 import { VehicleModel } from '../../../mobx/stores/vehiclesStore';
-import { useRootStore } from '../../../mobx/hooks/useRootStore';
+import { vehiclesService } from '../../../services/vehiclesService';
 
 interface ModelsListItemEditProps {
   model: VehicleModel;
@@ -20,10 +20,9 @@ const ModelsListItemEdit: React.FC<ModelsListItemEditProps> = ({
   const { ID, name, price } = model;
   const [newName, setNewName] = useState(name);
   const [newPrice, setNewPrice] = useState(price);
-  const { vehiclesStore } = useRootStore();
 
   const editModel = () => {
-    vehiclesStore.editModel(ID, newName, newPrice);
+    vehiclesService.editModel(ID, newName, newPrice);
     setEditing(false);
   };
 
