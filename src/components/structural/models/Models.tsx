@@ -7,7 +7,6 @@ import ModelsView from './ModelsView';
 import ModelsPagination from './ModelsPagination';
 import ModelsList from './ModelsList';
 import ModelsSort from './ModelsSort';
-import { useRootStore } from '../../../mobx/hooks/useRootStore';
 
 const Models: React.FC = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -18,7 +17,6 @@ const Models: React.FC = () => {
     sortingFunctionName,
     setSortingFunctionName,
   ] = useState<SortingFunctionName>('sortByPriceIncreasing');
-  const { models } = useRootStore().vehiclesStore;
 
   return (
     <div className='Models'>

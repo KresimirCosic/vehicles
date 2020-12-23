@@ -45,3 +45,9 @@
 @import './components/structural/models/ModelsList';
 @import './components/structural/models/ModelsListItem';
 @import './components/structural/models/ModelsListItemEdit';
+
+// Structural components (login)
+@import './components/structural/login/LoginForm';
+
+// Structural components (register)
+@import './components/structural/register/RegisterForm';
