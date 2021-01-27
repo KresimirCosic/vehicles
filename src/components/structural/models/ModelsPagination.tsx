@@ -26,10 +26,10 @@ const ModelsPagination: React.FC<ModelsPaginationProps> = ({
       let i = 1;
       i <=
       Math.ceil(
-        models.filter(
-          (model) =>
-            model.name.toLowerCase().includes(filterBy.toLowerCase()) ||
-            model.abrv.toLowerCase().includes(filterBy.toLowerCase())
+        models.filter((model) =>
+          // model.name.toLowerCase().includes(filterBy.toLowerCase()) ||
+          // model.abrv.toLowerCase().includes(filterBy.toLowerCase())
+          model.name.toLowerCase().includes(filterBy.toLowerCase())
         ).length / itemsPerPage
       );
       i++

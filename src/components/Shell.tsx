@@ -8,14 +8,12 @@ import AnonymousRoute from './utility/AnonymousRoute';
 import Nav from './structural/Nav';
 import Loader from './structural/Loader';
 import AdminPrivateRoute from './utility/AdminPrivateRoute';
-import { vehiclesService } from '../services/vehiclesService';
 
 const Shell: React.FC = () => {
   const { userInterfaceStore } = useRootStore();
 
   useEffect(() => {
     userInterfaceStore.turnLoaderOff();
-    vehiclesService.createMake('Peugeot', 'PEUG');
   });
 
   return (

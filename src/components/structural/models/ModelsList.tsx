@@ -28,10 +28,10 @@ const ModelsList: React.FC<ModelsListProps> = ({
 
   const generateModels = () => {
     return models
-      .filter(
-        (model) =>
-          model.name.toLowerCase().includes(filterBy.toLowerCase()) ||
-          model.abrv.toLowerCase().includes(filterBy.toLowerCase())
+      .filter((model) =>
+        // model.name.toLowerCase().includes(filterBy.toLowerCase()) ||
+        // model.abrv.toLowerCase().includes(filterBy.toLowerCase())
+        model.name.toLowerCase().includes(filterBy.toLowerCase())
       )
       .sort(sortingFunctions[sortingFunctionName].function)
       .slice((currentPage - 1) * itemsPerPage, currentPage * itemsPerPage);

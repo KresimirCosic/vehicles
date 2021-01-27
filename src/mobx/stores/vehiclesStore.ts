@@ -12,7 +12,6 @@ export interface VehicleModel {
   ID: string;
   name: string;
   makeID: string;
-  abrv: string;
   price: number;
 }
 
@@ -92,60 +91,60 @@ export class VehiclesStore {
   }
 
   addMake(ID: string, name: string, abrv: string) {
-    // let currentLargestMakeID = Math.max(...this.makes.map((make) => make.ID));
-    // if (!currentLargestMakeID) currentLargestMakeID = 0;
-    // this.makes.push({ ID: currentLargestMakeID + 1, name, abrv });
+    console.log(`Creating a make ${name} (${abrv}) with ID ${ID}`);
     this.makes.push({ ID, name, abrv });
   }
 
-  editMake(ID: number, name: string, abrv: string) {
-    // const index = this.makes.findIndex((make) => make.ID === ID);
-    // if (index >= 0) {
-    //   this.makes[index] = {
-    //     ID,
-    //     name,
-    //     abrv,
-    //   };
-    // }
+  editMake(ID: string, name: string, abrv: string) {
+    console.log(`Editing make ${name} (${abrv}) with ID ${ID}`);
+    const index = this.makes.findIndex((make) => make.ID === ID);
+    if (index >= 0) {
+      this.makes[index] = {
+        ID,
+        name,
+        abrv,
+      };
+    }
   }
 
-  removeAllModelsOfMake(ID: number) {
-    // const newModelsList = this.models.filter((model) => model.makeID !== ID);
-    // this.models = [...newModelsList];
+  removeAllModelsOfMake(ID: string) {
+    console.log(`Removing all models that are of make with ID ${ID}`);
+    const newModelsList = this.models.filter((model) => model.makeID !== ID);
+    this.models = [...newModelsList];
   }
 
-  removeMake(ID: number) {
-    // this.removeAllModelsOfMake(ID);
-    // const index = this.makes.findIndex((make) => make.ID === ID);
-    // if (index >= 0) this.makes.splice(index, 1);
+  removeMake(ID: string) {
+    console.log(`Removing the make with ID ${ID}`);
+    this.removeAllModelsOfMake(ID);
+    const index = this.makes.findIndex((make) => make.ID === ID);
+    if (index >= 0) this.makes.splice(index, 1);
   }
 
-  addModel(name: string, makeID: number, price: number) {
-    // const { abrv } = this.makes.filter((make) => make.ID === makeID)[0];
-    // let currentLargestModelID = Math.max(
-    //   ...this.models.map((model) => model.ID)
-    // );
-    // if (!currentLargestModelID) currentLargestModelID = 0;
-    // this.models.push({
-    //   ID: currentLargestModelID + 1,
-    //   name,
-    //   makeID,
-    //   abrv,
-    //   price,
-    // });
+  addModel(ID: string, name: string, makeID: string, price: number) {
+    console.log(
+      `Adding a model ${name} ($${price}) which is of make with ID ${makeID}`
+    );
+    this.models.push({
+      ID,
+      name,
+      makeID,
+      price,
+    });
   }
 
-  editModel(ID: number, name: string, price: number) {
-    // const index = this.models.findIndex((model) => model.ID === ID);
-    // this.models[index] = {
-    //   ...this.models[index],
-    //   name,
-    //   price,
-    // };
+  editModel(ID: string, name: string, price: number) {
+    console.log(`Editing model ${name} ($${price}) with ID ${ID}`);
+    const index = this.models.findIndex((model) => model.ID === ID);
+    this.models[index] = {
+      ...this.models[index],
+      name,
+      price,
+    };
   }
 
-  removeModel(ID: number) {
-    // const index = this.models.findIndex((model) => model.ID === ID);
-    // if (index >= 0) this.models.splice(index, 1);
+  removeModel(ID: string) {
+    console.log(`Removing model with ID ${ID}`);
+    const index = this.models.findIndex((model) => model.ID === ID);
+    if (index >= 0) this.models.splice(index, 1);
   }
 }
