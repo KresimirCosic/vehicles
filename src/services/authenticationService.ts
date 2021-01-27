@@ -1,10 +1,7 @@
 import firebase from 'firebase';
 
 import { rootStore } from '../mobx/stores/rootStore';
-
-interface UserData extends firebase.firestore.DocumentData {
-  admin: boolean;
-}
+import { UserDataResponse } from '../constants/firebase';
 
 export class AuthenticationService {
   login(email: string, password: string) {
@@ -20,7 +17,7 @@ export class AuthenticationService {
             .doc(uid)
             .get();
           docRef.then((doc) => {
-            const { admin } = doc.data() as UserData;
+            const { admin } = doc.data() as UserDataResponse;
             rootStore.authenticationStore.setUser(uid, email, admin);
           });
         }
