@@ -3,17 +3,17 @@ import React, { useState } from 'react';
 import { authenticationService } from '../../services/authenticationService';
 
 const RegisterForm: React.FC = () => {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [admin, setAdmin] = useState(false);
 
   const register = () => {
-    authenticationService.register(username, password, admin);
+    authenticationService.register(email, password, admin);
     resetForm();
   };
 
   const resetForm = () => {
-    setUsername('');
+    setEmail('');
     setPassword('');
     setAdmin(false);
   };
@@ -22,11 +22,11 @@ const RegisterForm: React.FC = () => {
     <form className='RegisterForm'>
       <div className='RegisterForm-inputs'>
         <input
-          className='RegisterForm-inputs-username'
+          className='RegisterForm-inputs-email'
           type='text'
-          placeholder='Username...'
-          value={username}
-          onChange={(e) => setUsername(e.target.value)}
+          placeholder='Email...'
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
         />
         <input
           className='RegisterForm-inputs-password'
