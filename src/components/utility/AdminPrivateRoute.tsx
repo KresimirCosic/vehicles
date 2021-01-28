@@ -14,7 +14,7 @@ const AdminPrivateRoute: React.FC<AdminPrivateRouteProps> = ({
 }) => {
   const { authenticationStore } = useRootStore();
 
-  if (authenticationStore.user && authenticationStore.user.admin)
+  if (authenticationStore.user.email && authenticationStore.user.admin)
     return (
       <Route exact path={path}>
         {children}

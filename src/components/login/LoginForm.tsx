@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { authenticationService } from '../../services/authenticationService';
 
 const LoginForm: React.FC = () => {
-  const [username, setUsername] = useState('');
+  const [email, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
   const login = () => {
-    authenticationService.login(username, password);
+    authenticationService.login(email, password);
   };
 
   return (
@@ -16,7 +16,7 @@ const LoginForm: React.FC = () => {
           className='LoginForm-inputs-username'
           type='text'
           placeholder='Username...'
-          value={username}
+          value={email}
           onChange={(e) => setUsername(e.target.value)}
         />
         <input

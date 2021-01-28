@@ -6,6 +6,7 @@ import { useRootStore } from '../../mobx/hooks/useRootStore';
 import { pageRoutes } from '../../routing/routes';
 
 import FadeIn from '../animated/FadeIn';
+import { authenticationService } from '../../services/authenticationService';
 
 const Nav: React.FC = () => {
   const { authenticationStore } = useRootStore();
@@ -16,12 +17,14 @@ const Nav: React.FC = () => {
     requiresAdminPrivileges: boolean
   ) => {
     if (
-      (privateRoute && authenticationStore.user && !requiresAdminPrivileges) ||
+      (privateRoute &&
+        authenticationStore.user.email &&
+        !requiresAdminPrivileges) ||
       (privateRoute &&
         requiresAdminPrivileges &&
-        authenticationStore.user &&
+        authenticationStore.user.email &&
         authenticationStore.user.admin) ||
-      (!privateRoute && requiresAnonymity && !authenticationStore.user) ||
+      (!privateRoute && requiresAnonymity && !authenticationStore.user.email) ||
       (!privateRoute && !requiresAnonymity)
     )
       return true;
@@ -66,10 +69,12 @@ const Nav: React.FC = () => {
                   return null;
                 }
               )}
-              {authenticationStore.user && (
+              {authenticationStore.user.email && (
                 <li
                   className='Nav-list-item'
-                  onClick={() => authenticationStore.removeUser()}
+                  onClick={() => {
+                    authenticationService.logout();
+                  }}
                 >
                   <button className='Nav-list-item-button'>Logout</button>
                 </li>
