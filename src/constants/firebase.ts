@@ -17,15 +17,12 @@ export interface UserDataResponse extends firebase.firestore.DocumentData {
 }
 
 export interface MakeDataResponse extends firebase.firestore.DocumentData {
-  ID: string;
   name: string;
   abrv: string;
 }
 
 export interface ModelDataResponse extends firebase.firestore.DocumentData {
-  ID: string;
   name: string;
   makeID: string;
-  abrv: string;
   price: number;
 }

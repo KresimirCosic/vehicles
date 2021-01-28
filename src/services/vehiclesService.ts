@@ -42,6 +42,21 @@ export class VehiclesService {
       });
     // To do
     // Delete all models from this make as well
+    firebase
+      .firestore()
+      .collection('models')
+      .where('makeID', '==', ID)
+      .get()
+      .then((querySnapshot) => {
+        const batch = firebase.firestore().batch();
+
+        querySnapshot.forEach((doc) => batch.delete(doc.ref));
+
+        return batch.commit();
+      })
+      .then(() => {
+        console.log(`Successfully deleted all models of make with ID ${ID}`);
+      });
   }
 
   createModel(name: string, makeID: string, price: number) {
