@@ -1,8 +1,25 @@
 import firebase from 'firebase';
 
 import { rootStore } from '../mobx/stores/rootStore';
+import { MakeDataResponse, ModelDataResponse } from '../constants/firebase';
 
 export class VehiclesService {
+  getMakes() {
+    firebase
+      .firestore()
+      .collection('makes')
+      .get()
+      .then((response) => {
+        rootStore.vehiclesStore.completeMakesInitialFetch();
+
+        response.forEach((doc) => {
+          const { id } = doc;
+          const { name, abrv } = doc.data() as MakeDataResponse;
+          rootStore.vehiclesStore.addMake(id, name, abrv);
+        });
+      });
+  }
+
   createMake(name: string, abrv: string) {
     firebase
       .firestore()
@@ -40,8 +57,7 @@ export class VehiclesService {
       .then(() => {
         rootStore.vehiclesStore.removeMake(ID);
       });
-    // To do
-    // Delete all models from this make as well
+
     firebase
       .firestore()
       .collection('models')
@@ -53,9 +69,23 @@ export class VehiclesService {
         querySnapshot.forEach((doc) => batch.delete(doc.ref));
 
         return batch.commit();
-      })
-      .then(() => {
-        console.log(`Successfully deleted all models of make with ID ${ID}`);
+      });
+  }
+
+  getModels() {
+    firebase
+      .firestore()
+      .collection('models')
+      .get()
+      .then((response) => {
+        rootStore.vehiclesStore.completeModelsInitalFetch();
+
+        response.forEach((doc) => {
+          const { id } = doc;
+          const { name, makeID, price } = doc.data() as ModelDataResponse;
+          console.log(id, name, makeID, price);
+          rootStore.vehiclesStore.addModel(id, name, makeID, price);
+        });
       });
   }
 

@@ -16,12 +16,12 @@ export interface UserDataResponse extends firebase.firestore.DocumentData {
   admin: boolean;
 }
 
-export interface MakeDataResponse extends firebase.firestore.DocumentData {
+export interface MakeDataResponse {
   name: string;
   abrv: string;
 }
 
-export interface ModelDataResponse extends firebase.firestore.DocumentData {
+export interface ModelDataResponse {
   name: string;
   makeID: string;
   price: number;
