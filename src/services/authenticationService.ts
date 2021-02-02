@@ -4,7 +4,12 @@ import { rootStore } from '../mobx/stores/rootStore';
 import { UserDataResponse } from '../constants/firebase';
 
 export class AuthenticationService {
+  // Logging a user in via Firebase Authentication
   login(email: string, password: string) {
+    const { authenticationStore, userInterfaceStore } = rootStore;
+
+    userInterfaceStore.turnLoaderOn();
+
     firebase
       .auth()
       .signInWithEmailAndPassword(email, password)
@@ -18,22 +23,36 @@ export class AuthenticationService {
             .get();
           docRef.then((doc) => {
             const { admin } = doc.data() as UserDataResponse;
-            rootStore.authenticationStore.setUser(uid, email, admin);
+            authenticationStore.setUser(uid, email, admin);
+
+            userInterfaceStore.turnLoaderOff();
           });
         }
       });
   }
 
+  // Logging a user out via Firebase Authentication
   logout() {
+    const { authenticationStore, userInterfaceStore } = rootStore;
+
+    userInterfaceStore.turnLoaderOn();
+
     firebase
       .auth()
       .signOut()
       .then(() => {
-        rootStore.authenticationStore.removeUser();
+        authenticationStore.removeUser();
+
+        userInterfaceStore.turnLoaderOff();
       });
   }
 
+  // Registering a user (and subsequently logging him in as well) via Firebase Authentication
   register(email: string, password: string, admin: boolean) {
+    const { authenticationStore, userInterfaceStore } = rootStore;
+
+    userInterfaceStore.turnLoaderOn();
+
     firebase
       .auth()
       .createUserWithEmailAndPassword(email, password)
@@ -48,7 +67,9 @@ export class AuthenticationService {
               admin,
             })
             .then(() => {
-              rootStore.authenticationStore.setUser(uid, email, admin);
+              authenticationStore.setUser(uid, email, admin);
+
+              userInterfaceStore.turnLoaderOff();
             });
         }
       });

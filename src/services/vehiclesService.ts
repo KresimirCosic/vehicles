@@ -4,6 +4,7 @@ import { rootStore } from '../mobx/stores/rootStore';
 import { MakeDataResponse, ModelDataResponse } from '../constants/firebase';
 
 export class VehiclesService {
+  // Fetching of makes from Firestore
   getMakes() {
     const { vehiclesStore, userInterfaceStore } = rootStore;
     userInterfaceStore.turnLoaderOn();
@@ -25,6 +26,7 @@ export class VehiclesService {
       });
   }
 
+  // Creating a make in Firestore
   createMake(name: string, abrv: string) {
     const { vehiclesStore, userInterfaceStore } = rootStore;
     userInterfaceStore.turnLoaderOn();
@@ -43,6 +45,7 @@ export class VehiclesService {
       });
   }
 
+  // Editing a make in Firestore
   editMake(ID: string, name: string, abrv: string) {
     const { vehiclesStore, userInterfaceStore } = rootStore;
     userInterfaceStore.turnLoaderOn();
@@ -61,6 +64,7 @@ export class VehiclesService {
       });
   }
 
+  // Deleting a make from Firestore (also deletes all models related to the make from Firestore)
   deleteMake(ID: string) {
     const { vehiclesStore, userInterfaceStore } = rootStore;
     userInterfaceStore.turnLoaderOn();
@@ -77,6 +81,7 @@ export class VehiclesService {
           .where('makeID', '==', ID)
           .get()
           .then((querySnapshot) => {
+            // Deleting all models related to the make being deleted
             const batch = firebase.firestore().batch();
 
             querySnapshot.forEach((doc) => batch.delete(doc.ref));
@@ -90,6 +95,7 @@ export class VehiclesService {
       });
   }
 
+  // Fetching of models from Firestore
   getModels() {
     const { vehiclesStore, userInterfaceStore } = rootStore;
     userInterfaceStore.turnLoaderOn();
@@ -111,6 +117,7 @@ export class VehiclesService {
       });
   }
 
+  // Creating a model in Firebase
   createModel(name: string, makeID: string, price: number) {
     const { vehiclesStore, userInterfaceStore } = rootStore;
     userInterfaceStore.turnLoaderOn();
@@ -130,6 +137,7 @@ export class VehiclesService {
       });
   }
 
+  // Editing a model in Firebase
   editModel(ID: string, name: string, price: number) {
     const { vehiclesStore, userInterfaceStore } = rootStore;
     userInterfaceStore.turnLoaderOn();
@@ -148,6 +156,7 @@ export class VehiclesService {
       });
   }
 
+  // Deleting a model from Firebase
   deleteModel(ID: string) {
     const { vehiclesStore, userInterfaceStore } = rootStore;
     userInterfaceStore.turnLoaderOn();

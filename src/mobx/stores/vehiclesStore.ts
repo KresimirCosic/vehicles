@@ -15,16 +15,12 @@ export interface VehicleModel {
   price: number;
 }
 
-const initalMakesState: VehicleMake[] = [];
-
-const initalModelsState: VehicleModel[] = [];
-
 export class VehiclesStore {
   rootStore;
   initialMakesFetchComplete = false;
   initialModelsFetchComplete = false;
-  makes = initalMakesState;
-  models = initalModelsState;
+  makes: VehicleMake[] = [];
+  models: VehicleModel[] = [];
 
   constructor(rootStore: RootStore) {
     makeObservable(this, {
