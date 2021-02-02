@@ -4,6 +4,7 @@ import Home from '../pages/Home';
 import Login from '../pages/Login';
 import Register from '../pages/Register';
 import Dashboard from '../pages/Dashboard';
+import Cart from '../pages/Cart';
 
 export interface PageRoute {
   name: string;
@@ -12,10 +13,21 @@ export interface PageRoute {
   visibleInNav: boolean;
   privateRoute: boolean;
   requiresAnonymity: boolean;
-  requiresAdminPrivileges: boolean;
+  adminExclusive: boolean;
+  userExclusive: boolean;
 }
 
 export const pageRoutes: PageRoute[] = [
+  {
+    name: 'Cart',
+    path: '/cart',
+    component: <Cart />,
+    visibleInNav: true,
+    privateRoute: true,
+    requiresAnonymity: false,
+    adminExclusive: false,
+    userExclusive: true,
+  },
   {
     name: 'Register',
     path: '/register',
@@ -23,7 +35,8 @@ export const pageRoutes: PageRoute[] = [
     visibleInNav: true,
     privateRoute: false,
     requiresAnonymity: true,
-    requiresAdminPrivileges: false,
+    adminExclusive: false,
+    userExclusive: false,
   },
   {
     name: 'Login',
@@ -32,7 +45,8 @@ export const pageRoutes: PageRoute[] = [
     visibleInNav: true,
     privateRoute: false,
     requiresAnonymity: true,
-    requiresAdminPrivileges: false,
+    adminExclusive: false,
+    userExclusive: false,
   },
   {
     name: 'Dashboard',
@@ -41,7 +55,8 @@ export const pageRoutes: PageRoute[] = [
     visibleInNav: true,
     privateRoute: true,
     requiresAnonymity: false,
-    requiresAdminPrivileges: true,
+    adminExclusive: true,
+    userExclusive: false,
   },
   {
     name: 'Home',
@@ -50,6 +65,7 @@ export const pageRoutes: PageRoute[] = [
     visibleInNav: true,
     privateRoute: true,
     requiresAnonymity: false,
-    requiresAdminPrivileges: false,
+    adminExclusive: false,
+    userExclusive: false,
   },
 ];

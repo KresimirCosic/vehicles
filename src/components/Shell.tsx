@@ -8,6 +8,7 @@ import AnonymousRoute from './utility/AnonymousRoute';
 import Nav from './structural/Nav';
 import Loader from './structural/Loader';
 import AdminPrivateRoute from './utility/AdminPrivateRoute';
+import UserPrivateRoute from './utility/UserPrivateRoute';
 
 const Shell: React.FC = () => {
   const { userInterfaceStore } = useRootStore();
@@ -31,14 +32,21 @@ const Shell: React.FC = () => {
               component,
               privateRoute,
               requiresAnonymity,
-              requiresAdminPrivileges,
+              adminExclusive,
+              userExclusive,
             }) => {
               if (privateRoute) {
-                if (requiresAdminPrivileges)
+                if (adminExclusive)
                   return (
                     <AdminPrivateRoute key={name} path={path}>
                       {component}
                     </AdminPrivateRoute>
+                  );
+                else if (userExclusive)
+                  return (
+                    <UserPrivateRoute key={name} path={path}>
+                      {component}
+                    </UserPrivateRoute>
                   );
                 else
                   return (

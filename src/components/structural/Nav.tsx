@@ -14,18 +14,17 @@ const Nav: React.FC = () => {
   const determineRouteRendering = (
     privateRoute: boolean,
     requiresAnonymity: boolean,
-    requiresAdminPrivileges: boolean
+    adminExclusive: boolean,
+    userExclusive: boolean
   ) => {
+    const { email, admin } = authenticationStore.user;
+
     if (
-      (privateRoute &&
-        authenticationStore.user.email &&
-        !requiresAdminPrivileges) ||
-      (privateRoute &&
-        requiresAdminPrivileges &&
-        authenticationStore.user.email &&
-        authenticationStore.user.admin) ||
-      (!privateRoute && requiresAnonymity && !authenticationStore.user.email) ||
-      (!privateRoute && !requiresAnonymity)
+      (!privateRoute && !requiresAnonymity) ||
+      (!privateRoute && requiresAnonymity && !email) ||
+      (privateRoute && !adminExclusive && !userExclusive && email) ||
+      (privateRoute && adminExclusive && email && admin) ||
+      (privateRoute && userExclusive && email && !admin)
     )
       return true;
     return false;
@@ -49,14 +48,16 @@ const Nav: React.FC = () => {
                   visibleInNav,
                   privateRoute,
                   requiresAnonymity,
-                  requiresAdminPrivileges,
+                  adminExclusive,
+                  userExclusive,
                 }) => {
                   if (
                     visibleInNav &&
                     determineRouteRendering(
                       privateRoute,
                       requiresAnonymity,
-                      requiresAdminPrivileges
+                      adminExclusive,
+                      userExclusive
                     )
                   )
                     return (
