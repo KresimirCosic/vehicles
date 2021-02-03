@@ -1,3 +1,4 @@
+import { observer } from 'mobx-react';
 import React, { Dispatch, SetStateAction } from 'react';
 
 import { useRootStore } from '../../../mobx/hooks/useRootStore';
@@ -13,7 +14,7 @@ const ModelsListItemControls: React.FC<ModelsListItemControlsProps> = ({
   model,
   setEditing,
 }) => {
-  const { authenticationStore } = useRootStore();
+  const { authenticationStore, vehiclesStore } = useRootStore();
   const { user } = authenticationStore;
   const { ID } = model;
 
@@ -21,11 +22,23 @@ const ModelsListItemControls: React.FC<ModelsListItemControlsProps> = ({
     vehiclesService.deleteModel(ID);
   };
 
+  const addToCart = (ID: string) => {
+    vehiclesStore.addToCart(ID);
+  };
+
+  const determineValidity = () => {
+    return vehiclesStore.cart.find((model) => model.ID === ID) ? true : false;
+  };
+
   return (
     <>
       {user && !user.admin && (
         <>
-          <button className='ModelsListItem-controls-button'>
+          <button
+            className='ModelsListItem-controls-button'
+            onClick={() => addToCart(ID)}
+            disabled={determineValidity()}
+          >
             Add to cart
           </button>
         </>
@@ -50,4 +63,4 @@ const ModelsListItemControls: React.FC<ModelsListItemControlsProps> = ({
   );
 };
 
-export default ModelsListItemControls;
+export default observer(ModelsListItemControls);

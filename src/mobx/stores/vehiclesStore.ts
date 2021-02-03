@@ -21,11 +21,13 @@ export class VehiclesStore {
   initialModelsFetchComplete = false;
   makes: VehicleMake[] = [];
   models: VehicleModel[] = [];
+  cart: VehicleModel[] = [];
 
   constructor(rootStore: RootStore) {
     makeObservable(this, {
       makes: observable,
       models: observable,
+      cart: observable,
       addMake: action,
       editMake: action,
       removeAllModelsOfMake: action,
@@ -92,5 +94,10 @@ export class VehiclesStore {
   removeModel(ID: string) {
     const index = this.models.findIndex((model) => model.ID === ID);
     if (index >= 0) this.models.splice(index, 1);
+  }
+
+  addToCart(ID: string) {
+    const model = this.models.find((model) => model.ID === ID);
+    if (model) this.cart.push(model);
   }
 }
